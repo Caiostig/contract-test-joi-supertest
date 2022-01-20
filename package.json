@@ -4,14 +4,16 @@
   "description": "Teste de contrato e API utilizando JOI e Supertest",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Caiostig/contract-test-joi-supertest.git"
   },
   "keywords": [
-    "test"
+    "test",
+    "contract",
+    "api"
   ],
   "author": "Caio Stiglini Recamon",
   "license": "ISC",
@@ -20,6 +22,7 @@
   },
   "homepage": "https://github.com/Caiostig/contract-test-joi-supertest#readme",
   "devDependencies": {
+    "dotenv": "^14.2.0",
     "jest": "^27.4.7",
     "joi": "^17.5.0",
     "supertest": "^6.2.2"
