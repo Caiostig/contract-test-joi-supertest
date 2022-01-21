@@ -1,11 +1,11 @@
 const Joi = require('joi')
 
-const nome = () => {
+const cepSchema = () => {
 
-const schema_viacep = Joi.object().keys({
-  cep: Joi.string(),
+const getObj = Joi.object().keys({
+  cep: Joi.string().required(),
   logradouro: Joi.string(),
-  complemento: Joi.string().allow(''),
+  complemento: Joi.string().optional(''),
   bairro: Joi.string(),
   localidade: Joi.string(),
   uf: Joi.string(),
@@ -15,7 +15,7 @@ const schema_viacep = Joi.object().keys({
   siafi: Joi.string()
 });
 
-return {schema_viacep}
+return {getObj}
 }
 
-module.exports = nome
+module.exports = cepSchema

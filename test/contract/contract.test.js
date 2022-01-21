@@ -11,6 +11,7 @@ describe('Contract Test API viacep', () => {
      const response = await request(baseURL)
         .get('/ws/01030000/json')
         .expect(200)
-            const resultado = Joi.attempt(response.body, schema().schema_viacep, 'Contrato está quebrado')
+        .expect('Content-Type', /json/)
+            Joi.attempt(response.body, schema().getObj, 'Contrato está quebrado')
         });
     });
