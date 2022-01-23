@@ -4,21 +4,19 @@ const baseURL = process.env.API_CEP || "";
 
 describe("GET /public", () => {
 
-  it('deve retornar 200 ao procurar um cep válido', () => {
+  it('deve retornar CEP válido', async () => {
 
-    return request(baseURL)  
+    const res = await request(baseURL)  
     .get('/ws/01030000/json')
     .set('Accept', 'application/json')
     .expect(200)
-    .then(response => {
-      expect(response.body.logradouro).toEqual('Rua Florêncio de Abreu')
-      expect(response.body.bairro).toEqual('Centro')
-      expect(response.body.localidade).toEqual('São Paulo')
-      expect(response.body.ddd).toEqual("11")
-    });
+      expect(res.body.logradouro).toEqual('Rua Florêncio de Abreu')
+      expect(res.body.bairro).toEqual('Centro')
+      expect(res.body.localidade).toEqual('São Paulo')
+      expect(res.body.ddd).toEqual("11");
   });
 
-  it('deve retornar 200 ao procurar um CEP válido - validação via JSON', () => {
+  it('deve retornar CEP válido - via JSON', async () => {
 
     let data = {
       cep: "01030-000",
@@ -32,46 +30,38 @@ describe("GET /public", () => {
       ddd: "11",
       siafi: "7107"
     };
-    return request(baseURL)  
+      const res = await request(baseURL)
       .get('/ws/01030000/json')
       .set('Accept', 'application/json')
       .expect(200)
-      .then(response => {
-        expect(response.body).toEqual(data)
-    });
+        expect(res.body).toEqual(data);
   });
 
-  it('Deve retornar erro ao enviar CEP válidos porém inexistente', () => {
+  it('Deve retornar erro ao enviar CEP válido inexistente', async () => {
 
-    return request(baseURL)  
+    const res = await request(baseURL)  
       .get('/ws/12121333/json')
       .set('Accept', 'application/json')
       .expect(200)
-      .then(response => {
-        expect(response.body.erro).toEqual(true)
-    });
+        expect(res.body.erro).toEqual(true);
   });
 
-  it('Deve retornar 400 ao enviar CEP inválido com mais números que o permitido', () => {
+  it('Deve retornar 400 ao enviar CEP inválido com mais números que o permitido', async () => {
 
-    return request(baseURL)  
+    const res = await request(baseURL)  
       .get('/ws/04199950060/json')
       .set('Accept', 'application/json')
       .expect(400)
-      .then(response => {
-        expect(response.type).toEqual('text/html');
-    });
+        expect(res.type).toEqual('text/html');
   });
 
-  it('Deve retornar 404 ao alterar o a rota de busca de CEPs', () => {
+  it('Deve retornar 404 ao alterar o a rota de busca de CEPs', async () => {
 
-    return request(baseURL)  
+    const res = await request(baseURL)  
       .get('/rw/01030000/jso')
       .set('Accept', 'application/json')
       .expect(404)
-      .then(response => {
-        expect(response.type).toEqual('text/html');
-    });
+        expect(res.type).toEqual('text/html');
   });
 
 });

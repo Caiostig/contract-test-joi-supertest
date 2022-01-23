@@ -4,7 +4,9 @@
   "description": "Teste de contrato e API utilizando JOI e Supertest",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:opt": "jest --watchAll"
+
   },
   "repository": {
     "type": "git",
@@ -13,6 +15,7 @@
   "keywords": [
     "test",
     "contract",
+    "schema",
     "api"
   ],
   "author": "Caio Stiglini Recamon",
